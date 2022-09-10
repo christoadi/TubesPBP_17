@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UGD1">
         <activity
-            android:name=".menu"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
