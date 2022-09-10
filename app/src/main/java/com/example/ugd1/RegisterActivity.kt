@@ -17,11 +17,10 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var tilNomorTelepon: TextInputLayout
     private lateinit var btnRegister: Button
     private lateinit var btnClear: Button
-    lateinit var mainLayout: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_register)
+        setContentView(R.layout.activity_register)
 
         tilUsername = findViewById(R.id.etUsername)
         tilPassword = findViewById(R.id.etPassword)
@@ -38,8 +37,8 @@ class RegisterActivity: AppCompatActivity() {
             tilTanggalLahir.editText?.setText("")
             tilNomorTelepon.editText?.setText("")
 
-            Snackbar.make(mainLayout, "Success Clear Field", Snackbar.LENGTH_LONG).show()
         }
+
         btnRegister.setOnClickListener(View.OnClickListener {
 
             var checkLogin = false
@@ -74,13 +73,55 @@ class RegisterActivity: AppCompatActivity() {
                 checkLogin = false
             }
 
-            if(username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty() && tanggalLahir.isNotEmpty() && nomorTelepon.isNotEmpty()){
+            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !nomorTelepon.isEmpty()){
                 val moveLogin = Intent(this@RegisterActivity, MainActivity::class.java)
                 startActivity(moveLogin)
 
                 checkLogin = true
             }
             if(!checkLogin) return@OnClickListener
+
+//            var checkLogin = false
+//            val username: String = tilUsername.getEditText()?.getText().toString()
+//            val password: String = tilPassword.getEditText()?.getText().toString()
+//            val email: String = tilEmail.getEditText()?.getText().toString()
+//            val tanggalLahir: String = tilTanggalLahir.getEditText()?.getText().toString()
+//            val noTelp: String = tilNomorTelepon.getEditText()?.getText().toString()
+//
+//
+//            if (username.isEmpty()) {
+//                tilUsername.setError("Username must be filled with text")
+//                checkLogin = false
+//            }
+//
+//            if (password.isEmpty()) {
+//                tilPassword.setError("Password must be filled with text")
+//                checkLogin = false
+//            }
+//
+//            if (email.isEmpty()) {
+//                tilEmail.setError("Password must be filled with text")
+//                checkLogin = false
+//            }
+//
+//            if (tanggalLahir.isEmpty()) {
+//                tilTanggalLahir.setError("Password must be filled with text")
+//                checkLogin = false
+//            }
+//
+//            if (noTelp.isEmpty()) {
+//                tilNomorTelepon.setError("Password must be filled with text")
+//                checkLogin = false
+//            }
+//
+//
+//            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty()&& !noTelp.isEmpty() ) {
+//                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+//                startActivity(moveRegister)
+//                checkLogin=true
+//            }
+//
+//            if (!checkLogin) return@OnClickListener
 
 
         })
