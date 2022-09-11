@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
+    var mBundle: Bundle? = null
+    var tempUsername: String = "a"
+    var tempPass: String = "a"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,14 @@ class MainActivity : AppCompatActivity() {
         val btnLogin: Button = findViewById(R.id.btnLogin)
         val btnClear: Button = findViewById(R.id.btnClear)
 
+        if(intent.getBundleExtra("register")!=null){
+            mBundle = intent.getBundleExtra("register")
+            tempUsername = mBundle!!.getString("username")!!
+            tempPass = mBundle!!.getString("password")!!
+            println(tempUsername)
+            inputUsername.editText?.setText(tempUsername)
+            inputPassword.editText?.setText(tempPass)
+        }
         btnRegister.setOnClickListener {
             val moveRegister = Intent(this@MainActivity, RegisterActivity::class.java)
             startActivity(moveRegister)
@@ -58,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             if(!checkLogin) return@OnClickListener
 
             val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+
             startActivity(moveHome)
         })
 

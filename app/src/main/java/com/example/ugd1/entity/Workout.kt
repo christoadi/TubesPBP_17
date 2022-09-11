@@ -11,7 +11,11 @@ class Workout(
             Workout("Russian Twist"),
             Workout("Push Up"),
             Workout("Heel Touch"),
-            Workout("Plank"),
+            Workout("Sit Up"),
+            Workout("Chin Up"),
+            Workout("Squats"),
+            Workout("Climbers"),
+            Workout("Leg Raises"),
         )
     }
 }

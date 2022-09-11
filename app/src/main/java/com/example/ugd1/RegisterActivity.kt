@@ -27,8 +27,8 @@ class RegisterActivity: AppCompatActivity() {
         tilEmail = findViewById(R.id.etEmail)
         tilTanggalLahir = findViewById(R.id.etTanggalLahir)
         tilNomorTelepon = findViewById(R.id.etNomorTelepon)
-        btnRegister = findViewById(R.id.btnRegister)
-        btnClear = findViewById(R.id.btnClear)
+        val btnRegister: Button = findViewById(R.id.btnRegister)
+        val btnClear: Button = findViewById(R.id.btnClear)
 
         btnClear.setOnClickListener{
             tilUsername.editText?.setText("")
@@ -40,13 +40,20 @@ class RegisterActivity: AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener(View.OnClickListener {
-
+            val mBundle = Bundle()
             var checkLogin = false
+
             val username: String = tilUsername.getEditText()?.getText().toString()
             val password: String = tilPassword.getEditText()?.getText().toString()
             val email: String = tilEmail.getEditText()?.getText().toString()
             val tanggalLahir: String = tilTanggalLahir.getEditText()?.getText().toString()
             val nomorTelepon: String = tilNomorTelepon.getEditText()?.getText().toString()
+
+            mBundle.putString("username", tilUsername.editText?.text.toString())
+            mBundle.putString("password", tilPassword.editText?.text.toString())
+            mBundle.putString("email", tilEmail.editText?.text.toString())
+            mBundle.putString("TanggalLahir", tilTanggalLahir.editText?.text.toString())
+            mBundle.putString("NomorTelepon", tilNomorTelepon.editText?.text.toString())
 
             if(username.isEmpty()){
                 tilUsername.setError("Username masih Kosong")
@@ -71,13 +78,13 @@ class RegisterActivity: AppCompatActivity() {
             if(nomorTelepon.isEmpty()){
                 tilNomorTelepon.setError("Nomor Telepon masih Kosong")
                 checkLogin = false
-            }
+        }
 
-            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !nomorTelepon.isEmpty()){
+            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.
+                isEmpty() && !nomorTelepon.isEmpty()){
                 val moveLogin = Intent(this@RegisterActivity, MainActivity::class.java)
+                intent.putExtra("register", mBundle)
                 startActivity(moveLogin)
-
-                checkLogin = true
             }
             if(!checkLogin) return@OnClickListener
 
