@@ -1,5 +1,6 @@
 package com.example.ugd1
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import android.content.Intent
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RegisterActivity: AppCompatActivity() {
     private lateinit var tilUsername: TextInputLayout
@@ -17,6 +20,9 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var tilNomorTelepon: TextInputLayout
     private lateinit var btnRegister: Button
     private lateinit var btnClear: Button
+    private lateinit var registerLayout: ConstraintLayout
+    private lateinit var btnDatePicker: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,31 +35,17 @@ class RegisterActivity: AppCompatActivity() {
         tilNomorTelepon = findViewById(R.id.etNomorTelepon)
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val btnClear: Button = findViewById(R.id.btnClear)
-
-        btnClear.setOnClickListener{
-            tilUsername.editText?.setText("")
-            tilPassword.editText?.setText("")
-            tilEmail.editText?.setText("")
-            tilTanggalLahir.editText?.setText("")
-            tilNomorTelepon.editText?.setText("")
-
-        }
+        var checkLogin = true
 
         btnRegister.setOnClickListener(View.OnClickListener {
             val mBundle = Bundle()
-            var checkLogin = false
+            val intent = Intent(this, MainActivity::class.java)
 
             val username: String = tilUsername.getEditText()?.getText().toString()
             val password: String = tilPassword.getEditText()?.getText().toString()
             val email: String = tilEmail.getEditText()?.getText().toString()
             val tanggalLahir: String = tilTanggalLahir.getEditText()?.getText().toString()
             val nomorTelepon: String = tilNomorTelepon.getEditText()?.getText().toString()
-
-            mBundle.putString("username", tilUsername.editText?.text.toString())
-            mBundle.putString("password", tilPassword.editText?.text.toString())
-            mBundle.putString("email", tilEmail.editText?.text.toString())
-            mBundle.putString("TanggalLahir", tilTanggalLahir.editText?.text.toString())
-            mBundle.putString("NomorTelepon", tilNomorTelepon.editText?.text.toString())
 
             if(username.isEmpty()){
                 tilUsername.setError("Username masih Kosong")
@@ -78,60 +70,63 @@ class RegisterActivity: AppCompatActivity() {
             if(nomorTelepon.isEmpty()){
                 tilNomorTelepon.setError("Nomor Telepon masih Kosong")
                 checkLogin = false
-        }
+            }
 
-            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.
-                isEmpty() && !nomorTelepon.isEmpty()){
-                val moveLogin = Intent(this@RegisterActivity, MainActivity::class.java)
-                intent.putExtra("register", mBundle)
-                startActivity(moveLogin)
+            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !nomorTelepon.isEmpty()){
+                checkLogin = true
+            }
+
+            if(tilUsername.getEditText()?.getText()==null){
+                tilUsername.getEditText()?.setText("")
+            }
+
+            if(tilPassword.getEditText()?.getText()==null){
+                tilPassword.getEditText()?.setText("")
+            }
+
+            if(checkLogin == true){
+                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+                mBundle.putString("username", tilUsername.editText?.text.toString())
+                mBundle.putString("password", tilPassword.editText?.text.toString())
+                mBundle.putString("email", tilEmail.editText?.text.toString())
+                mBundle.putString("TanggalLahir", tilTanggalLahir.editText?.text.toString())
+                mBundle.putString("NomorTelepon", tilNomorTelepon.editText?.text.toString())
+                moveRegister.putExtra("register", mBundle)
+                startActivity(moveRegister)
             }
             if(!checkLogin) return@OnClickListener
-
-//            var checkLogin = false
-//            val username: String = tilUsername.getEditText()?.getText().toString()
-//            val password: String = tilPassword.getEditText()?.getText().toString()
-//            val email: String = tilEmail.getEditText()?.getText().toString()
-//            val tanggalLahir: String = tilTanggalLahir.getEditText()?.getText().toString()
-//            val noTelp: String = tilNomorTelepon.getEditText()?.getText().toString()
-//
-//
-//            if (username.isEmpty()) {
-//                tilUsername.setError("Username must be filled with text")
-//                checkLogin = false
-//            }
-//
-//            if (password.isEmpty()) {
-//                tilPassword.setError("Password must be filled with text")
-//                checkLogin = false
-//            }
-//
-//            if (email.isEmpty()) {
-//                tilEmail.setError("Password must be filled with text")
-//                checkLogin = false
-//            }
-//
-//            if (tanggalLahir.isEmpty()) {
-//                tilTanggalLahir.setError("Password must be filled with text")
-//                checkLogin = false
-//            }
-//
-//            if (noTelp.isEmpty()) {
-//                tilNomorTelepon.setError("Password must be filled with text")
-//                checkLogin = false
-//            }
-//
-//
-//            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty()&& !noTelp.isEmpty() ) {
-//                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
-//                startActivity(moveRegister)
-//                checkLogin=true
-//            }
-//
-//            if (!checkLogin) return@OnClickListener
-
-
         })
+
+        btnDatePicker = findViewById(R.id.btnDatePicker)
+        val myCalendar = Calendar.getInstance()
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, month)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLable(myCalendar)
+        }
+
+        btnDatePicker.setOnClickListener{
+            DatePickerDialog(this, datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        btnClear.setOnClickListener{
+            tilUsername.editText?.setText("")
+            tilPassword.editText?.setText("")
+            tilEmail.editText?.setText("")
+            tilTanggalLahir.editText?.setText("")
+            tilNomorTelepon.editText?.setText("")
+
+        }
+
+
+    }
+
+    private fun updateLable(myCalendar: Calendar) {
+        val myFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        tilTanggalLahir.editText?.setText(sdf.format(myCalendar.time))
     }
 
 }

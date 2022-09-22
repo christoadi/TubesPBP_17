@@ -7,7 +7,6 @@
 
 
 
-
         <TextView
             android:id="@+id/jenisWorkout"
             style="@style/TextAppearance.MaterialComponents.Headline5"
@@ -29,6 +28,18 @@
             android:text="WATCH"
             android:textSize="9dp"
             app:backgroundTint="#fe7057" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/fitness"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/jenisWorkout"
+            />
+
 
 
 

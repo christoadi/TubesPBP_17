@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
-    var mBundle: Bundle? = null
-    var tempUsername: String = "a"
-    var tempPass: String = "a"
+    lateinit var mBundle: Bundle
+    var tempUsername: String = "admin"
+    var tempPass: String = "admin"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val btnClear: Button = findViewById(R.id.btnClear)
 
         if(intent.getBundleExtra("register")!=null){
-            mBundle = intent.getBundleExtra("register")
+            mBundle = intent.getBundleExtra("register")!!
             tempUsername = mBundle!!.getString("username")!!
             tempPass = mBundle!!.getString("password")!!
             println(tempUsername)
@@ -59,10 +59,10 @@ class MainActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if(username == "admin" && password == "admin") {
+            if(username == "admin" && password == "admin" || (username == tempUsername && password == tempPass)) {
                 checkLogin = true
             }
-            else if(username != "admin" || password != "admin"){
+            else if((username != "admin" || password != "admin") || (username != tempUsername && password != tempPass)){
                 checkLogin = false
                 Snackbar.make(mainLayout, "Username atau Password salah!", Snackbar.LENGTH_LONG).show()
             }

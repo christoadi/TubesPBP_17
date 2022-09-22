@@ -44,7 +44,7 @@
             android:id="@+id/inputLayoutUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Username"
             app:errorEnabled="true"
             app:startIconTint="@android:color/holo_blue_dark"
@@ -64,7 +64,7 @@
             android:id="@+id/inputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Password"
             app:errorEnabled="true"
             app:startIconTint="@android:color/holo_blue_dark"
@@ -95,7 +95,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@android:color/black"
             android:text="Register"/>
 
         <com.google.android.material.button.MaterialButton
@@ -105,7 +104,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:textColor="@android:color/black"
             android:text="Login"/>
 
 
