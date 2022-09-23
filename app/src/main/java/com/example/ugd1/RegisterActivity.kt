@@ -142,8 +142,6 @@ class RegisterActivity: AppCompatActivity() {
             binding.etNomorTelepon.editText?.setText("")
 
         }
-
-
     }
 
     private fun updateLable(myCalendar: Calendar) {
