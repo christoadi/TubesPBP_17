@@ -8,8 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.content.Intent
 import com.example.ugd1.databinding.ActivityRegisterBinding
+import com.example.ugd1.room.User
+import com.example.ugd1.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +30,9 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var btnDatePicker: Button
 
     private lateinit var binding: ActivityRegisterBinding
+
+    val db by lazy{ UserDB( this) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,6 +109,15 @@ class RegisterActivity: AppCompatActivity() {
                 startActivity(moveRegister)
             }
             if(!checkLogin) return@OnClickListener
+
+            CoroutineScope(Dispatchers.IO).launch {
+                run {
+                    db.userDao().addUser(
+                        User(0, username, password, email, tanggalLahir, nomorTelepon)
+                    )
+                    finish()
+                }
+            }
         })
 
         btnDatePicker = findViewById(R.id.btnDatePicker)
