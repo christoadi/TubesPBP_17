@@ -39,6 +39,7 @@ android {
     viewBinding{
         enabled = true
     }
+    namespace 'com.example.ugd1'
 }
 
 dependencies {
