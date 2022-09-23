@@ -5,6 +5,9 @@ plugins {
 }
 
 apply plugin: 'kotlin-kapt'
+def room_version = "2.4.3"
+def croutines_version = "1.3.9"
+
 
 android {
     compileSdk 31
@@ -17,10 +20,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildFeatures{
-        viewBinding true
     }
 
     buildTypes {
@@ -36,22 +35,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
-    implementation 'androidx.room:room-common:2.4.3'
-    implementation 'androidx.room:room-ktx:2.4.3'
-
-
-    // Room
-    def room_version = "2.4.3"
-    implementation "androidx.com.example.ugd1.room:com.example.ugd1.room-runtime:$room_version"
-    kapt "androidx.com.example.ugd1.room:com.example.ugd1.room-compiler:$room_version"
-    // Coroutines
-    def coroutines_version = "1.3.9"
-    implementation "androidx.com.example.ugd1.room:com.example.ugd1.room-ktx:$room_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
