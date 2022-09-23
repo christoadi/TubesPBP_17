@@ -32,6 +32,7 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 
     val db by lazy{ UserDB( this) }
+    val userDao = db.userDao()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,14 +111,8 @@ class RegisterActivity: AppCompatActivity() {
             }
             if(!checkLogin) return@OnClickListener
 
-            CoroutineScope(Dispatchers.IO).launch {
-                run {
-                    db.userDao().addUser(
-                        User(0, username, password, email, tanggalLahir, nomorTelepon)
-                    )
-                    finish()
-                }
-            }
+            val user = User(0, username, password, email, tanggalLahir, nomorTelepon)
+            userDao.addUser(user)
         })
 
         btnDatePicker = findViewById(R.id.btnDatePicker)

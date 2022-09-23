@@ -1,6 +1,8 @@
 package com.example.ugd1
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +10,7 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isEmpty
+import com.example.ugd1.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
@@ -19,11 +22,16 @@ class MainActivity : AppCompatActivity() {
     var tempUsername: String = "admin"
     var tempPass: String = "admin"
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         setTitle("User Login")
+
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
 
         inputUsername = findViewById(R.id.inputLayoutUsername)
         inputPassword = findViewById(R.id.inputLayoutPassword)
@@ -65,6 +73,18 @@ class MainActivity : AppCompatActivity() {
             else if((username != "admin" || password != "admin") || (username != tempUsername && password != tempPass)){
                 checkLogin = false
                 Snackbar.make(mainLayout, "Username atau Password salah!", Snackbar.LENGTH_LONG).show()
+            }
+
+            val db by lazy{ UserDB(this) }
+            val userDao = db.userDao()
+
+            val user = userDao.checkUser(username, password)
+            if(user!= null){
+                sharedPreferences.edit()
+                    .putInt("id", user.id)
+                    .apply()
+
+                checkLogin = true
             }
             if(!checkLogin) return@OnClickListener
 

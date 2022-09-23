@@ -1,5 +1,7 @@
 package com.example.ugd1
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +9,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 
 class HomeActivity : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
         setTitle("User Menu")
 
         getSupportActionBar()?.hide()
@@ -46,5 +50,9 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.layoutFragment,fragment)
             commit()
         }
+    }
+
+    fun getSharedPreferences(): SharedPreferences{
+        return sharedPreferences
     }
 }
