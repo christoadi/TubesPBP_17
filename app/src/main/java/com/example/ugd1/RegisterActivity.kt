@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.content.Intent
+import com.example.ugd1.databinding.ActivityRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -23,10 +24,15 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var registerLayout: ConstraintLayout
     private lateinit var btnDatePicker: Button
 
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        val view = binding.root
+
+        setContentView(view)
 
         tilUsername = findViewById(R.id.etUsername)
         tilPassword = findViewById(R.id.etPassword)
@@ -37,38 +43,38 @@ class RegisterActivity: AppCompatActivity() {
         val btnClear: Button = findViewById(R.id.btnClear)
         var checkLogin = true
 
-        btnRegister.setOnClickListener(View.OnClickListener {
+        binding.btnRegister.setOnClickListener(View.OnClickListener {
             val mBundle = Bundle()
             val intent = Intent(this, MainActivity::class.java)
 
-            val username: String = tilUsername.getEditText()?.getText().toString()
-            val password: String = tilPassword.getEditText()?.getText().toString()
-            val email: String = tilEmail.getEditText()?.getText().toString()
-            val tanggalLahir: String = tilTanggalLahir.getEditText()?.getText().toString()
-            val nomorTelepon: String = tilNomorTelepon.getEditText()?.getText().toString()
+            val username: String = binding.etUsername.getEditText()?.getText().toString()
+            val password: String = binding.etPassword.getEditText()?.getText().toString()
+            val email: String = binding.etEmail.getEditText()?.getText().toString()
+            val tanggalLahir: String = binding.etTanggalLahir.getEditText()?.getText().toString()
+            val nomorTelepon: String = binding.etNomorTelepon.getEditText()?.getText().toString()
 
             if(username.isEmpty()){
-                tilUsername.setError("Username masih Kosong")
+                binding.etUsername.setError("Username masih Kosong")
                 checkLogin = false
             }
 
             if(password.isEmpty()){
-                tilPassword.setError("Password masih Kosong")
+                binding.etPassword.setError("Password masih Kosong")
                 checkLogin = false
             }
 
             if(email.isEmpty()) {
-                tilEmail.setError("Email masih Kosong")
+                binding.etEmail.setError("Email masih Kosong")
                 checkLogin = false
             }
 
             if(tanggalLahir.isEmpty()){
-                tilTanggalLahir.setError("Tanggal Lahir masih Kosong")
+                binding.etTanggalLahir.setError("Tanggal Lahir masih Kosong")
                 checkLogin = false
             }
 
             if(nomorTelepon.isEmpty()){
-                tilNomorTelepon.setError("Nomor Telepon masih Kosong")
+                binding.etNomorTelepon.setError("Nomor Telepon masih Kosong")
                 checkLogin = false
             }
 
@@ -76,21 +82,21 @@ class RegisterActivity: AppCompatActivity() {
                 checkLogin = true
             }
 
-            if(tilUsername.getEditText()?.getText()==null){
-                tilUsername.getEditText()?.setText("")
+            if(binding.etUsername.getEditText()?.getText()==null){
+                binding.etUsername.getEditText()?.setText("")
             }
 
-            if(tilPassword.getEditText()?.getText()==null){
-                tilPassword.getEditText()?.setText("")
+            if(binding.etPassword.getEditText()?.getText()==null){
+                binding.etPassword.getEditText()?.setText("")
             }
 
             if(checkLogin == true){
                 val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
-                mBundle.putString("username", tilUsername.editText?.text.toString())
-                mBundle.putString("password", tilPassword.editText?.text.toString())
-                mBundle.putString("email", tilEmail.editText?.text.toString())
-                mBundle.putString("TanggalLahir", tilTanggalLahir.editText?.text.toString())
-                mBundle.putString("NomorTelepon", tilNomorTelepon.editText?.text.toString())
+                mBundle.putString("username", binding.etUsername.editText?.text.toString())
+                mBundle.putString("password", binding.etPassword.editText?.text.toString())
+                mBundle.putString("email", binding.etEmail.editText?.text.toString())
+                mBundle.putString("TanggalLahir", binding.etTanggalLahir.editText?.text.toString())
+                mBundle.putString("NomorTelepon", binding.etNomorTelepon.editText?.text.toString())
                 moveRegister.putExtra("register", mBundle)
                 startActivity(moveRegister)
             }
@@ -112,11 +118,11 @@ class RegisterActivity: AppCompatActivity() {
         }
 
         btnClear.setOnClickListener{
-            tilUsername.editText?.setText("")
-            tilPassword.editText?.setText("")
-            tilEmail.editText?.setText("")
-            tilTanggalLahir.editText?.setText("")
-            tilNomorTelepon.editText?.setText("")
+            binding.etUsername.editText?.setText("")
+            binding.etPassword.editText?.setText("")
+            binding.etEmail.editText?.setText("")
+            binding.etTanggalLahir.editText?.setText("")
+            binding.etNomorTelepon.editText?.setText("")
 
         }
 
@@ -126,7 +132,7 @@ class RegisterActivity: AppCompatActivity() {
     private fun updateLable(myCalendar: Calendar) {
         val myFormat = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
-        tilTanggalLahir.editText?.setText(sdf.format(myCalendar.time))
+        binding.etTanggalLahir.editText?.setText(sdf.format(myCalendar.time))
     }
 
 }
