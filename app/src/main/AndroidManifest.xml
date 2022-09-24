@@ -9,10 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UGD1">
         <activity
-            android:name=".MemberGymAdapter"
+            android:name=".memberGym.MemberGymActivity"
             android:exported="false" />
         <activity
-            android:name=".EditMemberGym"
+            android:name=".memberGym.EditMemberGym"
             android:exported="false" />
         <activity
             android:name=".EditProfileFragment"

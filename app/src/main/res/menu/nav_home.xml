@@ -12,6 +12,11 @@
         android:title="Data Pelanggan"/>
 
     <item
+        android:id="@+id/navigation_memberGym"
+        android:icon="@drawable/ic_baseline_work_24"
+        android:title="Member Gym"/>
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile"/>
