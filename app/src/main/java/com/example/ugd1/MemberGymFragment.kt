@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.ugd1.memberGym.MemberGymActivity
 
 class MemberGymFragment : Fragment() {
 
@@ -15,16 +14,16 @@ class MemberGymFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_member_gym, container, false)
+        return inflater.inflate(R.layout.fragment_member_gym, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnAddPeminjam: Button = view.findViewById(R.id.btnAdd)
+        val btnAdd: Button = view.findViewById(R.id.btnAdd)
 
 
-        btnAddPeminjam.setOnClickListener(View.OnClickListener {
+        btnAdd.setOnClickListener(View.OnClickListener {
             val movePeminjam = Intent(this@MemberGymFragment.context, MemberGymActivity::class.java)
             startActivity(movePeminjam)
         })

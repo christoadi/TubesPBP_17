@@ -1,14 +1,8 @@
-package com.example.ugd1.memberGym
+package com.example.ugd1
 
-import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import com.example.ugd1.R
-import com.example.ugd1.databinding.ActivityEditMemberGymBinding
-import com.example.ugd1.databinding.ActivityEditProfileBinding
 import com.example.ugd1.room.Constant
 import com.example.ugd1.room.MemberGym
 import com.example.ugd1.room.MemberGymDB
@@ -16,8 +10,6 @@ import kotlinx.android.synthetic.main.activity_edit_member_gym.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EditMemberGym : AppCompatActivity() {
     val db by lazy { MemberGymDB(this) }

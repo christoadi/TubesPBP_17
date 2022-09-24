@@ -1,4 +1,4 @@
-package com.example.ugd1.memberGym
+package com.example.ugd1
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ugd1.R
-import com.example.ugd1.databinding.ActivityMemberGymAdapterBinding
 import com.example.ugd1.room.Constant
 import com.example.ugd1.room.MemberGym
 import com.example.ugd1.room.MemberGymDB
@@ -26,14 +24,14 @@ class MemberGymActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_member_gym_adapter)
+        setContentView(R.layout.activity_member_gym)
         setupListener()
         setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
         memberGymAdapter = MemberGymAdapter(arrayListOf(), object :
-            MemberGymAdapter.OnAdapterListener{
+            MemberGymAdapter.OnAdapterListener {
             override fun onClick(memberGym : MemberGym) {
                 Toast.makeText(applicationContext, memberGym.personalTrainer,
                     Toast.LENGTH_SHORT).show()

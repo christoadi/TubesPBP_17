@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.navigation_data -> {
                     setThatFragments(data)
                 }
-                R.id.navigation_data -> {
+                R.id.navigation_memberGym -> {
                     setThatFragments(memberGym)
                 }
                 R.id.navigation_profile -> {

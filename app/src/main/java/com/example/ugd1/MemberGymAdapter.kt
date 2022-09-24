@@ -1,18 +1,16 @@
-package com.example.ugd1.memberGym
+package com.example.ugd1
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ugd1.R
 import com.example.ugd1.room.MemberGym
 import kotlinx.android.synthetic.main.activity_member_gym_adapter.view.*
 
 class MemberGymAdapter (private val memberGyms : ArrayList<MemberGym>, private val
-listener: OnAdapterListener) :
+listener: OnAdapterListener
+) :
     RecyclerView.Adapter<MemberGymAdapter.MemberGymViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             MemberGymViewHolder {
@@ -27,6 +25,9 @@ listener: OnAdapterListener) :
         Int ) {
         val memberGym = memberGyms[position]
         holder.view.tvPersonalTrainer.text = memberGym.personalTrainer
+        holder.view.tvMembership.text = memberGym.membership
+        holder.view.tvTanggal.text = memberGym.tanggal
+        holder.view.tvDurasi.text = memberGym.durasi
         holder.view.tvPersonalTrainer.setOnClickListener {
             listener.onClick(memberGym)
         }
