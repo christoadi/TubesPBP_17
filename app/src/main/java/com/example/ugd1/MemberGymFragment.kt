@@ -24,8 +24,8 @@ class MemberGymFragment : Fragment() {
 
 
         btnAdd.setOnClickListener(View.OnClickListener {
-            val movePeminjam = Intent(this@MemberGymFragment.context, MemberGymActivity::class.java)
-            startActivity(movePeminjam)
+            val moveMemberGym = Intent(this@MemberGymFragment.context, MemberGymActivity::class.java)
+            startActivity(moveMemberGym)
         })
     }
 
