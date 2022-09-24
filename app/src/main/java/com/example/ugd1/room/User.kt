@@ -13,5 +13,4 @@ data class User (
     val email : String,
     val tanggalLahir : String,
     val nomorTelepon : String
-
 )
