@@ -31,8 +31,6 @@ class RegisterActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
-    val db by lazy{ UserDB( this) }
-    val userDao = db.userDao()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +40,9 @@ class RegisterActivity: AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
+
+        val db by lazy{ UserDB( this) }
+        val userDao = db.userDao()
 
         tilUsername = findViewById(R.id.etUsername)
         tilPassword = findViewById(R.id.etPassword)

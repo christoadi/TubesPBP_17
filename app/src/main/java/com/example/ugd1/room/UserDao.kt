@@ -12,8 +12,8 @@ interface UserDao {
     fun deleteUser(note: User)
     @Query("SELECT * FROM User")
     fun getUser() : List<User>
-    @Query("SELECT * FROM User WHERE username =:user_username")
-    fun getUser(user_username: String) : User
+    @Query("SELECT * FROM User WHERE id =:user_id")
+    fun getUser(user_id: Int) : User
     @Query("SELECT * FROM User WHERE username =:username AND password = :password")
     fun checkUser(username: String, password: String): User?
 }

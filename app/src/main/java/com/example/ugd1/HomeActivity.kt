@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
         var bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
         val home = HomeFragment()
         val data = DataFragment()
-        val profile = ProfileFragment()
+        val profile = ProfilFragment()
 
         setThatFragments(home)
 
