@@ -18,6 +18,7 @@ class EditMemberGym : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_member_gym)
+        supportActionBar?.hide()
         setupView()
         setupListener()
     }
@@ -45,10 +46,10 @@ class EditMemberGym : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 db.MemberGymDao().addMemberGym(
                     MemberGym(
-                        0, etPersonalTrainer.editText?.text.toString(),
-                        etMembership.editText?.text.toString(),
-                        etTanggal.editText?.text.toString(),
-                        etDurasi.editText?.text.toString()
+                        0, etPersonalTrainer.text.toString(),
+                        etMembership.text.toString(),
+                        etTanggal.text.toString(),
+                        etDurasi.text.toString()
                     )
                 )
                 finish()
@@ -58,10 +59,10 @@ class EditMemberGym : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 db.MemberGymDao().updateMemberGym(
                     MemberGym(memberGymId,
-                        etPersonalTrainer.editText?.text.toString(),
-                        etMembership.editText?.text.toString(),
-                        etTanggal.editText?.text.toString(),
-                        etDurasi.editText?.text.toString())
+                        etPersonalTrainer.text.toString(),
+                        etMembership.text.toString(),
+                        etTanggal.text.toString(),
+                        etDurasi.text.toString())
                 )
                 finish()
             }
@@ -71,10 +72,10 @@ class EditMemberGym : AppCompatActivity() {
         memberGymId = intent.getIntExtra("intent_id", 0)
         CoroutineScope(Dispatchers.IO).launch {
             val memberGym = db.MemberGymDao().getMemberGym(memberGymId)[0]
-            etPersonalTrainer.editText?.setText(memberGym.personalTrainer)
-            etMembership.editText?.setText(memberGym.membership)
-            etTanggal.editText?.setText(memberGym.tanggal)
-            etDurasi.editText?.setText(memberGym.durasi)
+            etPersonalTrainer.setText(memberGym.personalTrainer)
+            etMembership.setText(memberGym.membership)
+            etTanggal.setText(memberGym.tanggal)
+            etDurasi.setText(memberGym.durasi)
         }
     }
 

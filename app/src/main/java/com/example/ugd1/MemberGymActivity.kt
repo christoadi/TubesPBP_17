@@ -25,6 +25,7 @@ class MemberGymActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_gym)
+        supportActionBar?.hide()
         setupListener()
         setupRecyclerView()
     }
