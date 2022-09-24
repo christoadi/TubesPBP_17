@@ -29,7 +29,7 @@ class ProfilFragment : Fragment() {
         setProfil()
 
         binding.btnUpdate.setOnClickListener {
-
+            transitionFragment(EditProfileFragment())
         }
     }
 
