@@ -21,7 +21,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             )
         }
     }
-    //berat sekali ya bun pembicaraanya
 
     private fun sendNotification(messageTitle: String, messageBody: String) {
         val intent = Intent(this, MyFirebaseMessagingService::class.java).apply {
