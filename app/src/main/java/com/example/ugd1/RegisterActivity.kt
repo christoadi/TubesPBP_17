@@ -17,6 +17,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.ugd1.databinding.ActivityMainBinding
 
 class RegisterActivity: AppCompatActivity() {
     private lateinit var tilUsername: TextInputLayout
@@ -28,6 +37,9 @@ class RegisterActivity: AppCompatActivity() {
     private lateinit var btnClear: Button
     private lateinit var registerLayout: ConstraintLayout
     private lateinit var btnDatePicker: Button
+    private val CHANNEL_ID_1 = "channel_notification_01"
+    private val CHANNEL_ID_2 = "channel_notification_02"
+    private val notificationId1 = 101
 
     private lateinit var binding: ActivityRegisterBinding
 
@@ -107,6 +119,11 @@ class RegisterActivity: AppCompatActivity() {
                 mBundle.putString("email", binding.etEmail.editText?.text.toString())
                 mBundle.putString("TanggalLahir", binding.etTanggalLahir.editText?.text.toString())
                 mBundle.putString("NomorTelepon", binding.etNomorTelepon.editText?.text.toString())
+
+                createNotificationChannel()
+
+                sendNotification1()
+
                 moveRegister.putExtra("register", mBundle)
                 startActivity(moveRegister)
             }
@@ -139,6 +156,54 @@ class RegisterActivity: AppCompatActivity() {
 
         }
     }
+
+    private fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Title"
+            val descriptionText = "Notification Description"
+
+            val channel1 = NotificationChannel(CHANNEL_ID_1, name, NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = descriptionText
+            }
+
+            val channel2 = NotificationChannel(CHANNEL_ID_2, name, NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = descriptionText
+            }
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel1)
+            notificationManager.createNotificationChannel(channel2)
+        }
+    }
+
+    private fun sendNotification1() {
+        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val broadcastIntent : Intent = Intent(this, NotificationReceiver::class.java)
+        broadcastIntent.putExtra("toastMessage", binding?.inputUsername?.text.toString())
+        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+            .setSmallIcon(R.drawable.ic_baseline_looks_one_24)
+            .setContentTitle(binding?.inputUsername?.text.toString())
+            .setContentText(binding?.inputEmail?.text.toString())
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setColor(Color.BLUE)
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+            .setContentIntent(pendingIntent)
+            .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationId1, builder.build())
+        }
+    }
+
 
     private fun updateLable(myCalendar: Calendar) {
         val myFormat = "dd-MM-yyyy"
