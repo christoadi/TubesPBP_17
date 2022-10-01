@@ -73,7 +73,7 @@ class EditMemberGym : AppCompatActivity() {
         }
     }
 
-    private fun sendNotification() {
+    private fun sendNotification2() {
 //        val intent : Intent = Intent(this, MainActivity::class.java).apply {
 //            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 //        }
@@ -106,6 +106,39 @@ class EditMemberGym : AppCompatActivity() {
         }
     }
 
+    private fun sendNotification1() {
+//        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        }
+//
+//        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+//        val broadcastIntent : Intent = Intent(this, NotificationReceiver::class.java)
+//        broadcastIntent.putExtra("toastMessage", "Register Succesful, Happy Gym "+binding?.inputUsername?.text.toString())
+//        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val logo = BitmapFactory.decodeResource(resources, R.drawable.gym)
+        val builder = NotificationCompat.Builder(this, MEMBER_GYM_1)
+            .setSmallIcon(R.drawable.gym)
+            .setContentTitle("Add Member Gym")
+            .setContentText("Success Add as "+ binding?.etMembership?.text.toString())
+//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setColor(Color.BLUE)
+            .setLargeIcon(logo)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigLargeIcon(null)
+                    .bigPicture(logo)
+            )
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+//            .setContentIntent(pendingIntent)
+//            .addAction(R.mipmap.ic_launcher, "Welcome", actionIntent)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationId, builder.build())
+        }
+    }
+
     private fun setupListener() {
         btnSave.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
@@ -118,7 +151,7 @@ class EditMemberGym : AppCompatActivity() {
                     )
                 )
                 createNotificationChannel()
-                sendNotification()
+                sendNotification1()
                 finish()
             }
         }
@@ -132,7 +165,7 @@ class EditMemberGym : AppCompatActivity() {
                         etDurasi.text.toString())
                 )
                 createNotificationChannel()
-                sendNotification()
+                sendNotification2()
                 finish()
             }
         }
