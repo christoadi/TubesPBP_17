@@ -167,14 +167,10 @@ class RegisterActivity: AppCompatActivity() {
                 description = descriptionText
             }
 
-            val channel2 = NotificationChannel(CHANNEL_ID_2, name, NotificationManager.IMPORTANCE_DEFAULT).apply {
-                description = descriptionText
-            }
 
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel1)
-            notificationManager.createNotificationChannel(channel2)
         }
     }
 
