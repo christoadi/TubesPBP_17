@@ -21,6 +21,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -181,22 +182,28 @@ class RegisterActivity: AppCompatActivity() {
         val intent : Intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
         val broadcastIntent : Intent = Intent(this, NotificationReceiver::class.java)
-        broadcastIntent.putExtra("toastMessage", binding?.inputUsername?.text.toString())
+        broadcastIntent.putExtra("toastMessage", "Register Succesful, Happy Gym "+binding?.inputUsername?.text.toString())
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
+        val logo = BitmapFactory.decodeResource(resources, R.drawable.gym)
         val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
-            .setSmallIcon(R.drawable.ic_baseline_looks_one_24)
-            .setContentTitle(binding?.inputUsername?.text.toString())
-            .setContentText(binding?.inputEmail?.text.toString())
+            .setSmallIcon(R.drawable.gym)
+            .setContentTitle("Register Succesful !!")
+            .setContentText("Registered as "+binding?.inputUsername?.text.toString())
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
             .setColor(Color.BLUE)
+            .setLargeIcon(logo)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigLargeIcon(null)
+                    .bigPicture(logo)
+            )
             .setAutoCancel(true)
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
-            .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
+            .addAction(R.mipmap.ic_launcher, "Welcome", actionIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)) {
