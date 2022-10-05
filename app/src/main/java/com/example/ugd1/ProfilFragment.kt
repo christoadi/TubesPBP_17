@@ -1,5 +1,6 @@
 package com.example.ugd1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +32,11 @@ class ProfilFragment : Fragment() {
         binding.btnUpdate.setOnClickListener {
             transitionFragment(EditProfileFragment())
         }
+
+        binding.btnLogout.setOnClickListener {
+            val moveLogout= Intent(this@ProfilFragment.context, MainActivity::class.java)
+            startActivity(moveLogout)
+        }
     }
 
     private fun setProfil() {
@@ -56,5 +62,7 @@ class ProfilFragment : Fragment() {
             .addToBackStack(null).commit()
         transition.hide(ProfilFragment())
     }
+
+
 
 }
