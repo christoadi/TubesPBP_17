@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import com.example.ugd1.databinding.FragmentProfilBinding
 import com.example.ugd1.room.UserDB
 
@@ -36,6 +38,12 @@ class ProfilFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             val moveLogout= Intent(this@ProfilFragment.context, MainActivity::class.java)
             startActivity(moveLogout)
+        }
+
+//        val camera: ImageView = view.findViewById(R.id.homeHospital)
+        binding.homeHospital.setOnClickListener {
+            val moveCamera = Intent(this@ProfilFragment.context, CameraActivity::class.java)
+            startActivity(moveCamera)
         }
     }
 

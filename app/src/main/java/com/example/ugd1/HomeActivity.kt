@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
         getSupportActionBar()?.hide()
         var bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
         val home = HomeFragment()
-        val data = DataFragment()
+        val loc = LocationFragment()
         val memberGym = MemberGymFragment()
         val profile = ProfilFragment()
 
@@ -32,8 +32,8 @@ class HomeActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     setThatFragments(home)
                 }
-                R.id.navigation_data -> {
-                    setThatFragments(data)
+                R.id.navigation_location -> {
+                    setThatFragments(loc)
                 }
                 R.id.navigation_memberGym -> {
                     setThatFragments(memberGym)

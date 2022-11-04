@@ -19,7 +19,7 @@ class MemberGymFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_member_gym, container, false)
+        return inflater.inflate(R.layout.activity_member_gym, container, false)
     }
 
 
@@ -32,6 +32,8 @@ class MemberGymFragment : Fragment() {
         btnAdd.setOnClickListener(View.OnClickListener {
             val moveMemberGym = Intent(this@MemberGymFragment.context, MemberGymActivity::class.java)
             startActivity(moveMemberGym)
+
+
         })
     }
 

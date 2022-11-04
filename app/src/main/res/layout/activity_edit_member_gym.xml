@@ -124,7 +124,7 @@
         android:id="@+id/etTanggal"
         android:layout_width="350dp"
         android:layout_height="0dp"
-        android:hint="Membership"
+        android:hint="Tanggal"
         android:minHeight="48dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"

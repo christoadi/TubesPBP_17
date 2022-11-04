@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.779433,
+          "lng": 110.415782
+        }
+      },
+      "name": "Kampus 3 UAJY",
+      "vicinity": "Jalan. Babarsari no 43, janti caturtunggal, kec. Depok, Kabupaten Sleman, DIY 55281"
+    },
+
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.774915556083407,
+          "lng": 110.41574163257468
+        }
+      },
+      "name": "Gym",
+      "vicinity": "Jalan. Tambak Bayan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    }
+  ],
+  "status": "OK"
+}

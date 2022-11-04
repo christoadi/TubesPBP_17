@@ -15,9 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.ugd1.databinding.ActivityEditMemberGymBinding
-import com.example.ugd1.room.Constant
-import com.example.ugd1.room.MemberGym
-import com.example.ugd1.room.MemberGymDB
+import com.example.ugd1.room.*
 import kotlinx.android.synthetic.main.activity_edit_member_gym.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,10 +23,13 @@ import kotlinx.coroutines.launch
 
 class EditMemberGym : AppCompatActivity() {
     val db by lazy { MemberGymDB(this) }
+    val MemberGymDao = db.MemberGymDao()
+
     private var memberGymId : Int = 0
     private var binding: ActivityEditMemberGymBinding? = null
     private val MEMBER_GYM_1 = "notif_member_gym_1"
     private val notificationId = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,7 +121,6 @@ class EditMemberGym : AppCompatActivity() {
             .setSmallIcon(R.drawable.gym)
             .setContentTitle("Add Member Gym")
             .setContentText("Success Add as "+ binding?.etMembership?.text.toString())
-//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
             .setColor(Color.BLUE)
             .setLargeIcon(logo)
             .setStyle(
