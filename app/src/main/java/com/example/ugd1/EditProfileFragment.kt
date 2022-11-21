@@ -1,18 +1,33 @@
 package com.example.ugd1
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.ugd1.api.UserApi
 import com.example.ugd1.databinding.ActivityEditProfileBinding
+import com.example.ugd1.model.UserModel
 import com.example.ugd1.room.User
 import com.example.ugd1.room.UserDB
+import com.google.gson.Gson
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 class EditProfileFragment : Fragment() {
     private var _binding: ActivityEditProfileBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sharedPreferences: SharedPreferences
+    private var queue: RequestQueue? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +41,14 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        queue = Volley.newRequestQueue(activity)
+        sharedPreferences = (activity as HomeActivity).getSharedPreferences("login", Context.MODE_PRIVATE)
+
+        val sharedPreferences = (activity as HomeActivity).getSharedPreferences()
+        var id = sharedPreferences.getInt("id", 0)
+        var password = sharedPreferences.getString("pass", null)
+        var tanggalLahir = sharedPreferences.getString("tgl", null)
 
         var check = true
 
@@ -46,7 +69,11 @@ class EditProfileFragment : Fragment() {
                 check = true
                 return@setOnClickListener
             }else {
-                updateData()
+                if (password != null) {
+                    if (tanggalLahir != null) {
+                        updateProfile(id, password, tanggalLahir)
+                    }
+                }
                 transitionFragment(ProfilFragment())
             }
 
@@ -86,4 +113,68 @@ class EditProfileFragment : Fragment() {
         transition.hide(EditProfileFragment())
     }
 
+    private fun updateProfile(id: Int, password: String, tanggalLahir: String) {
+//        setLoading(true)
+
+        val user = UserModel(
+            id,
+            binding.tietUsername.text.toString(),
+            password,
+            binding.tietEmail.text.toString(),
+            tanggalLahir,
+            binding.tietNoTelp.text.toString(),
+        )
+
+        val stringRequest: StringRequest =
+            object : StringRequest(Method.PUT, UserApi.UPDATE_URL + id, Response.Listener { response ->
+                val gson = Gson()
+                var user = gson.fromJson(response, UserModel::class.java)
+
+                if(user != null) {
+                    var userObject = JSONObject(response.toString())
+                    val userData = userObject.getJSONObject("data")
+
+                    sharedPreferences.edit()
+                        .putInt("id",userData.getInt("id"))
+                        .putString("pass",userData.getString("password"))
+                        .apply()
+                    Toast.makeText(activity, "User Berhasil Diupdate", Toast.LENGTH_SHORT).show()
+                }
+//                setLoading(false)
+
+            }, Response.ErrorListener { error ->
+//                setLoading(false)
+                try {
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(
+                        activity,
+                        errors.getString("message"),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }catch (e: Exception) {
+                    Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }) {
+                @Throws(AuthFailureError::class)
+                override fun getHeaders(): Map<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["Accept"] = "application/json"
+                    return headers
+                }
+
+                @Throws(AuthFailureError::class)
+                override fun getBody(): ByteArray {
+                    val gson = Gson()
+                    val requestBody = gson.toJson(user)
+                    return requestBody.toByteArray(StandardCharsets.UTF_8)
+                }
+
+                override fun getBodyContentType(): String {
+                    return "application/json"
+                }
+            }
+        queue!!.add(stringRequest)
+
+    }
 }

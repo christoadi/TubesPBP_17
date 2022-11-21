@@ -147,6 +147,7 @@ class MainActivity : AppCompatActivity() {
                     sharedPreferences.edit()
                         .putInt("id",check.getInt("id"))
                         .putString("pass",check.getString("password"))
+                        .putString("tgl",check.getString("tanggalLahir"))
                         .apply()
                     startActivity(intent)
                 }else {
