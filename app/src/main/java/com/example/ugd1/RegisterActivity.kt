@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.content.Intent
 import com.example.ugd1.databinding.ActivityRegisterBinding
-import com.example.ugd1.room.User
-import com.example.ugd1.room.UserDB
+//import com.example.ugd1.room.User
+import com.example.ugd1.model.UserModel
+//import com.example.ugd1.room.UserDB
+import com.example.ugd1.api.UserApi
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
@@ -24,9 +26,19 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.ugd1.databinding.ActivityMainBinding
+import com.example.ugd1.room.User
+import com.google.gson.Gson
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 class RegisterActivity: AppCompatActivity() {
     private lateinit var tilUsername: TextInputLayout
@@ -41,6 +53,7 @@ class RegisterActivity: AppCompatActivity() {
     private val CHANNEL_ID_1 = "channel_notification_01"
     private val CHANNEL_ID_2 = "channel_notification_02"
     private val notificationId1 = 101
+    private var queue: RequestQueue? = null
 
     private lateinit var binding: ActivityRegisterBinding
 
@@ -51,11 +64,12 @@ class RegisterActivity: AppCompatActivity() {
         setContentView(R.layout.activity_register)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         val view = binding.root
+        queue = Volley.newRequestQueue(this)
 
         setContentView(view)
 
-        val db by lazy{ UserDB( this) }
-        val userDao = db.userDao()
+//        val db by lazy{ UserDB( this) }
+//        val userDao = db.userDao()
 
         tilUsername = findViewById(R.id.etUsername)
         tilPassword = findViewById(R.id.etPassword)
@@ -114,24 +128,25 @@ class RegisterActivity: AppCompatActivity() {
             }
 
             if(checkLogin == true){
-                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
-                mBundle.putString("username", binding.etUsername.editText?.text.toString())
-                mBundle.putString("password", binding.etPassword.editText?.text.toString())
-                mBundle.putString("email", binding.etEmail.editText?.text.toString())
-                mBundle.putString("TanggalLahir", binding.etTanggalLahir.editText?.text.toString())
-                mBundle.putString("NomorTelepon", binding.etNomorTelepon.editText?.text.toString())
-
-                createNotificationChannel()
-
-                sendNotification1()
-
-                moveRegister.putExtra("register", mBundle)
-                startActivity(moveRegister)
+                createUser(mBundle)
+//                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+//                mBundle.putString("username", binding.etUsername.editText?.text.toString())
+//                mBundle.putString("password", binding.etPassword.editText?.text.toString())
+//                mBundle.putString("email", binding.etEmail.editText?.text.toString())
+//                mBundle.putString("TanggalLahir", binding.etTanggalLahir.editText?.text.toString())
+//                mBundle.putString("NomorTelepon", binding.etNomorTelepon.editText?.text.toString())
+//
+//                createNotificationChannel()
+//
+//                sendNotification1()
+//
+//                moveRegister.putExtra("register", mBundle)
+//                startActivity(moveRegister)
             }
             if(!checkLogin) return@OnClickListener
 
-            val user = User(0, username, password, email, tanggalLahir, nomorTelepon)
-            userDao.addUser(user)
+//            val user = User(0, username, password, email, tanggalLahir, nomorTelepon)
+//            userDao.addUser(user)
         })
 
         btnDatePicker = findViewById(R.id.btnDatePicker)
@@ -214,4 +229,79 @@ class RegisterActivity: AppCompatActivity() {
         binding.etTanggalLahir.editText?.setText(sdf.format(myCalendar.time))
     }
 
+    private fun createUser(mBundle: Bundle){
+//        setLoading(true)
+
+        val user = UserModel(0,
+            binding.etUsername.getEditText()?.getText().toString(),
+            binding.etPassword.getEditText()?.getText().toString(),
+            binding.etEmail.getEditText()?.getText().toString(),
+            binding.etTanggalLahir.getEditText()?.getText().toString(),
+            binding.etNomorTelepon.getEditText()?.getText().toString()
+        )
+        val stringRequest: StringRequest = object: StringRequest(Method.POST, UserApi.ADD_URL, Response.Listener { response->
+                val gson = Gson()
+                val mahasiswa = gson.fromJson(response, UserModel::class.java)
+                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+
+                if(mahasiswa!=null){
+                    Toast.makeText(this@RegisterActivity, "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(this@RegisterActivity, "Data kosong", Toast.LENGTH_SHORT).show()
+                }
+
+
+//                val returnIntent = Intent()
+//                setResult(RESULT_OK, returnIntent)
+//                finish()
+                mBundle.putString("username", binding.etUsername.editText?.text.toString())
+                mBundle.putString("password", binding.etPassword.editText?.text.toString())
+                mBundle.putString("email", binding.etEmail.editText?.text.toString())
+                mBundle.putString("TanggalLahir", binding.etTanggalLahir.editText?.text.toString())
+                mBundle.putString("NomorTelepon", binding.etNomorTelepon.editText?.text.toString())
+
+                createNotificationChannel()
+
+                sendNotification1()
+
+                moveRegister.putExtra("register", mBundle)
+                startActivity(moveRegister)
+
+//                setLoading(false)
+            }, Response.ErrorListener { error->
+//                setLoading(false)
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        errors.getString("message"),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }catch (e:Exception){
+                    Toast.makeText(this@RegisterActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }) {
+                @Throws(AuthFailureError::class)
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["Accept"] = "application/json"
+                    return headers
+
+                }
+
+                @Throws(AuthFailureError::class)
+                override fun getBody(): ByteArray {
+                    val gson = Gson()
+                    val requestBody = gson.toJson(user)
+                    return requestBody.toByteArray(StandardCharsets.UTF_8)
+                }
+
+                override fun getBodyContentType(): String {
+                    return "application/json"
+                }
+            }
+        // Menambahkan request ke request queue
+        queue!!.add(stringRequest)
+    }
 }
