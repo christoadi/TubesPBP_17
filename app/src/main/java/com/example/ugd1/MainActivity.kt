@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                     //UI Toast notif
                     MotionToast.darkColorToast(this,
                         "Login Berhasil",
-                        "Pemai",
+                        "Selamat",
                         MotionToastStyle.SUCCESS,
                         MotionToast.GRAVITY_BOTTOM,
                         MotionToast.LONG_DURATION,
