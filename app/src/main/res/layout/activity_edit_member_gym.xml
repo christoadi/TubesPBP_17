@@ -6,189 +6,315 @@
     android:layout_height="match_parent"
     tools:context=".EditMemberGym">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtEditMemberGym"
-        android:layout_marginTop="40dp"
-        android:text="Member Gym"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/etPersonalTrainer"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="24dp"-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/txtEditMemberGym"-->
 <!--        android:layout_marginTop="40dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:layout_marginBottom="0dp"-->
+<!--        android:text="Member Gym"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="32sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:startIconTint="@android:color/holo_blue_dark"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--&lt;!&ndash;    <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/etPersonalTrainer"&ndash;&gt;-->
+<!--&lt;!&ndash;        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="40dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginBottom="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconTint="@android:color/holo_blue_dark"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/txtEditMemberGym"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconDrawable="@drawable/ic_baseline_person_24">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Personal Trainer" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
+<!--    <EditText-->
+<!--        android:id="@+id/etPersonalTrainer"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:hint="Personal Trainer"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/txtEditMemberGym"-->
-<!--        app:startIconDrawable="@drawable/ic_baseline_person_24">-->
-
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Personal Trainer" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-    <EditText
-        android:id="@+id/etPersonalTrainer"
-        android:layout_width="350dp"
-        android:layout_height="0dp"
-        android:hint="Personal Trainer"
-        android:minHeight="48dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtEditMemberGym"
-        />
+<!--        />-->
 
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--&lt;!&ndash;    <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/etMembership"&ndash;&gt;-->
+<!--&lt;!&ndash;        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginBottom="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconTint="@android:color/holo_blue_dark"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/etPersonalTrainer"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconDrawable="@drawable/ic_baseline_work_24">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Membership" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
+
+<!--    <EditText-->
 <!--        android:id="@+id/etMembership"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:layout_marginBottom="0dp"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:hint="Membership"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:layout_marginTop="20dp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:startIconTint="@android:color/holo_blue_dark"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/etPersonalTrainer"-->
-<!--        app:startIconDrawable="@drawable/ic_baseline_work_24">-->
+<!--        />-->
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Membership" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--&lt;!&ndash;    <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/etTanggal"&ndash;&gt;-->
+<!--&lt;!&ndash;        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconTint="@android:color/holo_blue_dark"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginBottom="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconDrawable="@drawable/ic_baseline_date_range_24"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/etMembership" >&ndash;&gt;-->
 
-    <EditText
-        android:id="@+id/etMembership"
-        android:layout_width="350dp"
-        android:layout_height="0dp"
-        android:hint="Membership"
-        android:minHeight="48dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPersonalTrainer"
-        />
+<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/tietTanggal"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Tanggal" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--&lt;!&ndash;    <com.google.android.material.button.MaterialButton&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginLeft="90dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/btnDatePicker"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="200dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:backgroundTint="@android:color/holo_blue_dark"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconDrawable="@drawable/ic_baseline_date_range_24"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/etTanggal"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="Date Pick" />&ndash;&gt;-->
+
+<!--    <EditText-->
 <!--        android:id="@+id/etTanggal"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        app:startIconTint="@android:color/holo_blue_dark"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:layout_marginBottom="0dp"-->
-<!--        app:startIconDrawable="@drawable/ic_baseline_date_range_24"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:hint="Tanggal"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:layout_marginTop="20dp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/etMembership" >-->
+<!--        app:layout_constraintTop_toBottomOf="@id/etMembership"-->
+<!--        />-->
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/tietTanggal"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Tanggal" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--&lt;!&ndash;    <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/etDurasi"&ndash;&gt;-->
+<!--&lt;!&ndash;        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginStart="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginEnd="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginBottom="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconTint="@android:color/holo_blue_dark"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/btnDatePicker"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:startIconDrawable="@drawable/ic_baseline_schedule_24">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Durasi" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/etDurasi"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:hint="Durasi"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/etTanggal"-->
+<!--        />-->
 
 <!--    <com.google.android.material.button.MaterialButton-->
 <!--        android:layout_height="50dp"-->
-<!--        android:layout_marginLeft="90dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:id="@+id/btnDatePicker"-->
-<!--        android:layout_width="200dp"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:id="@+id/btnSave"-->
+<!--        android:layout_width="300dp"-->
 <!--        android:backgroundTint="@android:color/holo_blue_dark"-->
 <!--        app:startIconDrawable="@drawable/ic_baseline_date_range_24"-->
 <!--        android:layout_weight="1"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/etTanggal"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/etDurasi"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:text="Date Pick" />-->
+<!--        android:text="SAVE MEMBER GYM" />-->
 
-    <EditText
-        android:id="@+id/etTanggal"
-        android:layout_width="350dp"
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:id="@+id/btnUpdate"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:backgroundTint="@android:color/holo_blue_dark"-->
+<!--        app:startIconDrawable="@drawable/ic_baseline_date_range_24"-->
+<!--        android:layout_weight="1"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/btnSave"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:text="UPDATE MEMBER GYM" />-->
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:hint="Tanggal"
-        android:minHeight="48dp"
-        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etMembership"
-        />
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/etDurasi"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:layout_marginBottom="0dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:startIconTint="@android:color/holo_blue_dark"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/btnDatePicker"-->
-<!--        app:startIconDrawable="@drawable/ic_baseline_schedule_24">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Durasi" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Tambah Member"/>
 
-    <EditText
-        android:id="@+id/etDurasi"
-        android:layout_width="350dp"
-        android:layout_height="0dp"
-        android:hint="Durasi"
-        android:minHeight="48dp"
-        android:layout_marginTop="20dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_personalTrainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Personal Trainer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_personalTrainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_membership"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Membership">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_membership"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_tanggal"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Tanggal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_durasi"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Durasi">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_durasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etTanggal"
-        />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
-        android:id="@+id/btnSave"
-        android:layout_width="300dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-        android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/etDurasi"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="SAVE MEMBER GYM" />
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Batal"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btnUpdate"
-        android:layout_width="300dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-        android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/btnSave"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="UPDATE MEMBER GYM" />
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Simpan"/>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

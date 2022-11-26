@@ -44,9 +44,6 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
-
-
-
     }
 
     private fun setThatFragments(fragment : Fragment){

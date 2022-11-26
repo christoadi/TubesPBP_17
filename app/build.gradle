@@ -66,4 +66,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.code.gson:gson:2.8.8'
+
+    //UI Toast Notification
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
 }

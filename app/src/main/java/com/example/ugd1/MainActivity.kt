@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isEmpty
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
@@ -23,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import org.json.JSONObject
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.nio.charset.StandardCharsets
 
 class MainActivity : AppCompatActivity() {
@@ -142,7 +145,17 @@ class MainActivity : AppCompatActivity() {
                     var checkObj = JSONObject(response.toString())
                     val  check = checkObj.getJSONObject("data")
 
-                    Toast.makeText(this@MainActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+
+                    //UI Toast notif
+                    MotionToast.darkColorToast(this,
+                        "Login Berhasil",
+                        "Pemai",
+                        MotionToastStyle.SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+
                     val intent = Intent(this@MainActivity, HomeActivity::class.java)
                     sharedPreferences.edit()
                         .putInt("id",check.getInt("id"))
@@ -151,7 +164,15 @@ class MainActivity : AppCompatActivity() {
                         .apply()
                     startActivity(intent)
                 }else {
-                    Toast.makeText(this@MainActivity, "Login gagal", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "Login gagal", Toast.LENGTH_SHORT).show()
+                    //UI Toast Notification
+                    MotionToast.darkColorToast(this,
+                        "Login Gagal!",
+                        "Pemai",
+                        MotionToastStyle.ERROR,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
                     return@Listener
                 }
 
