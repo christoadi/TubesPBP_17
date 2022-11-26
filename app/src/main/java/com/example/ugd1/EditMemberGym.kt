@@ -42,6 +42,8 @@ class EditMemberGym : AppCompatActivity() {
     private var layoutLoading: LinearLayout? = null
     private var queue: RequestQueue? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_member_gym)
