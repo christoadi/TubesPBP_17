@@ -111,7 +111,7 @@
             android:id="@+id/btnUpdate"
             android:layout_width="370dp"
             android:layout_height="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@color/black"
             android:backgroundTint="@color/white"
             android:text="Update Profil"
@@ -140,6 +140,22 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"/>-->
 
     <Button
+        android:id="@+id/btnQr"
+        android:layout_width="370dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        android:backgroundTint="@color/white"
+        android:text="Qr Scanner"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"/>
+
+    <Button
         android:id="@+id/btnLogout"
         android:layout_width="370dp"
         android:layout_height="35dp"
@@ -153,7 +169,7 @@
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnQr"/>
 
 
 

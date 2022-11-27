@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_home.*
-import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -31,47 +30,47 @@ class HomeActivity : AppCompatActivity() {
         val profile = ProfilFragment()
 
         setThatFragments(home)
-//
-//        bottomNavigationView.setOnItemSelectedListener{
-//            when(it.itemId){
-//                R.id.navigation_home -> {
-//                    setThatFragments(home)
-//                }
-//                R.id.navigation_location -> {
-//                    setThatFragments(loc)
-//                }
-//                R.id.navigation_memberGym -> {
-//                    setThatFragments(memberGym)
-//                }
-//                R.id.navigation_profile -> {
-//                    setThatFragments(profile)
-//                }
-//            }
-//            true
-//        }
 
-        nav_view.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
-            override fun onTabSelected(
-                lastIndex: Int,
-                lastTab: AnimatedBottomBar.Tab?,
-                newIndex: Int,
-                newTab: AnimatedBottomBar.Tab
-            ) {
-
-                //redirecting fragments
-                when(newIndex){
-                    0 -> setThatFragments(home);
-                    1 -> setThatFragments(loc);
-                    2 -> setThatFragments(memberGym);
-                    3 -> setThatFragments(profile);
+        nav_home.setOnItemSelectedListener{
+            when(it){
+                R.id.navigation_home -> {
+                    setThatFragments(home)
                 }
-                Log.d("bottom_bar", "Selected index: $newIndex, title: ${newTab.title}")
+                R.id.navigation_location -> {
+                    setThatFragments(loc)
+                }
+                R.id.navigation_memberGym -> {
+                    setThatFragments(memberGym)
+                }
+                R.id.navigation_profile -> {
+                    setThatFragments(profile)
+                }
             }
+            true
+        }
 
-            override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
-                Log.d("bottom_bar", "Reselected index: $index, title: ${tab.title}")
-            }
-        });
+//        nav_home.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
+//            override fun onTabSelected(
+//                lastIndex: Int,
+//                lastTab: AnimatedBottomBar.Tab?,
+//                newIndex: Int,
+//                newTab: AnimatedBottomBar.Tab
+//            ) {
+//
+//                //redirecting fragments
+//                when(newIndex){
+//                    0 -> setThatFragments(home);
+//                    1 -> setThatFragments(loc);
+//                    2 -> setThatFragments(memberGym);
+//                    3 -> setThatFragments(profile);
+//                }
+//                Log.d("bottom_bar", "Selected index: $newIndex, title: ${newTab.title}")
+//            }
+//
+//            override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
+//                Log.d("bottom_bar", "Reselected index: $index, title: ${tab.title}")
+//            }
+//        });
     }
 
 

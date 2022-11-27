@@ -49,6 +49,11 @@ class ProfilFragment : Fragment() {
             transitionFragment(EditProfileFragment())
         }
 
+        binding.btnQr.setOnClickListener(View.OnClickListener {
+            val moveQr = Intent(this@ProfilFragment.context, QrScan::class.java)
+            startActivity(moveQr)
+        })
+
         binding.btnLogout.setOnClickListener {
             val moveLogout= Intent(this@ProfilFragment.context, MainActivity::class.java)
             startActivity(moveLogout)

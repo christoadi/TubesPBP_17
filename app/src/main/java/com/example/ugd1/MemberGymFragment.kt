@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import kotlinx.android.synthetic.main.fragment_member_gym.*
 
 class MemberGymFragment : Fragment() {
 
@@ -19,7 +22,7 @@ class MemberGymFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_member_gym, container, false)
+        return inflater.inflate(R.layout.fragment_member_gym, container, false)
     }
 
 
@@ -35,6 +38,17 @@ class MemberGymFragment : Fragment() {
 
 
         })
+
+        btnGlide.setOnClickListener(View.OnClickListener {
+            val url = "https://picsum.photos/300"
+
+            Glide.with(this)
+                .load(url)
+                .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(imageGlide)
+            })
     }
 
 

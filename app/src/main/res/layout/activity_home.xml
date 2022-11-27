@@ -21,23 +21,39 @@
 <!--        app:layout_constraintRight_toRightOf="parent"-->
 <!--        app:menu="@menu/nav_home" />-->
 
-    <nl.joery.animatedbottombar.AnimatedBottomBar
+<!--    <nl.joery.animatedbottombar.AnimatedBottomBar-->
+<!--        android:id="@+id/nav_home"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#050A66"-->
+<!--        app:abb_indicatorAppearance="round"-->
+<!--        app:abb_indicatorHeight="4dp"-->
+<!--        app:abb_indicatorMargin="16dp"-->
+<!--        app:abb_selectedIndex="0"-->
+<!--        app:abb_indicatorColor="#00008B"-->
+<!--        app:abb_tabColorSelected="#3F51B5"-->
+
+<!--        app:abb_selectedTabType="text"-->
+<!--        app:abb_tabs="@menu/nav_home"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/nav_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#050A66"
-        app:abb_indicatorAppearance="round"
-        app:abb_indicatorHeight="4dp"
-        app:abb_indicatorMargin="16dp"
-        app:abb_selectedIndex="0"
-        app:abb_indicatorColor="#00008B"
-        app:abb_tabColorSelected="#3F51B5"
-
-        app:abb_selectedTabType="text"
-        app:abb_tabs="@menu/nav_home"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:fadingEdge="horizontal"
+        app:cnb_animationDuration="175"
+        app:cnb_unselectedColor="@color/white"
+        app:cnb_badgeColor="@color/white"
+        android:background="@color/black"
+        app:cnb_menuResource="@menu/nav_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/layoutFragment"

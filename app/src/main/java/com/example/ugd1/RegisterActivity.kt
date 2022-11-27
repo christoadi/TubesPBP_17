@@ -1,5 +1,46 @@
 package com.example.ugd1
 
+//import android.app.DatePickerDialog
+//import android.os.Bundle
+//import android.view.View
+//import android.widget.Button
+//import androidx.appcompat.app.AppCompatActivity
+//import androidx.constraintlayout.widget.ConstraintLayout
+//import android.content.Intent
+//import com.example.ugd1.databinding.ActivityRegisterBinding
+////import com.example.ugd1.room.User
+//import com.example.ugd1.model.UserModel
+////import com.example.ugd1.room.UserDB
+//import com.example.ugd1.api.UserApi
+//import com.google.android.material.snackbar.Snackbar
+//import com.google.android.material.textfield.TextInputLayout
+//import kotlinx.coroutines.CoroutineScope
+//import kotlinx.coroutines.Dispatchers
+//import kotlinx.coroutines.launch
+//import java.text.SimpleDateFormat
+//import java.util.*
+//import android.app.NotificationChannel
+//import android.app.NotificationManager
+//import android.app.PendingIntent
+//import android.content.Context
+//import android.graphics.BitmapFactory
+//import android.graphics.Color
+//import android.os.Build
+//import android.widget.Toast
+//import androidx.core.app.NotificationCompat
+//import androidx.core.app.NotificationManagerCompat
+//import com.android.volley.AuthFailureError
+//import com.android.volley.RequestQueue
+//import com.android.volley.Response
+//import com.android.volley.toolbox.StringRequest
+//import com.android.volley.toolbox.Volley
+//import com.example.ugd1.databinding.ActivityMainBinding
+//import com.example.ugd1.room.User
+//import com.google.gson.Gson
+//import org.json.JSONObject
+//import java.nio.charset.StandardCharsets
+
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
@@ -23,10 +64,14 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
+import android.os.Environment
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.android.volley.AuthFailureError
@@ -37,8 +82,28 @@ import com.android.volley.toolbox.Volley
 import com.example.ugd1.databinding.ActivityMainBinding
 import com.example.ugd1.room.User
 import com.google.gson.Gson
+import com.itextpdf.barcodes.BarcodeQRCode
+import com.itextpdf.io.image.ImageDataFactory
+import com.itextpdf.io.source.ByteArrayOutputStream
+import com.itextpdf.kernel.colors.ColorConstants
+import com.itextpdf.kernel.geom.PageSize
+import com.itextpdf.kernel.pdf.PdfDocument
+import com.itextpdf.kernel.pdf.PdfWriter
+import com.itextpdf.layout.Document
+import com.itextpdf.layout.element.Cell
+import com.itextpdf.layout.element.Image
+import com.itextpdf.layout.element.Paragraph
+import com.itextpdf.layout.element.Table
+import com.itextpdf.layout.property.HorizontalAlignment
+import com.itextpdf.layout.property.TextAlignment
 import org.json.JSONObject
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
 import java.nio.charset.StandardCharsets
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class RegisterActivity: AppCompatActivity() {
     private lateinit var tilUsername: TextInputLayout
@@ -129,6 +194,7 @@ class RegisterActivity: AppCompatActivity() {
 
             if(checkLogin == true){
                 createUser(mBundle)
+
 //                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
 //                mBundle.putString("username", binding.etUsername.editText?.text.toString())
 //                mBundle.putString("password", binding.etPassword.editText?.text.toString())
@@ -304,4 +370,6 @@ class RegisterActivity: AppCompatActivity() {
         // Menambahkan request ke request queue
         queue!!.add(stringRequest)
     }
+
+
 }
