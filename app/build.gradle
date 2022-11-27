@@ -69,4 +69,8 @@ dependencies {
 
     //UI Toast Notification
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
+    //UI Animated Nav Bottom
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 }
