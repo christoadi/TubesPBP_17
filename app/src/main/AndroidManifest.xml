@@ -30,13 +30,12 @@
         <activity
             android:name=".QrScan"
             android:exported="false" />
-
         <activity
             android:name=".MemberGymActivity"
             android:exported="false" />
         <activity
             android:name=".EditMemberGym"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".EditProfileFragment"
             android:exported="false" />
