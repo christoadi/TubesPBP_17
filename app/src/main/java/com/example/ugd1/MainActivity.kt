@@ -71,23 +71,23 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener(View.OnClickListener {
             var checkLogin = true
-            val username: String = inputUsername.getEditText()?.getText().toString()
-            val password: String = inputPassword.getEditText()?.getText().toString()
+//            val username: String = inputUsername.getEditText()?.getText().toString()
+//            val password: String = inputPassword.getEditText()?.getText().toString()
 
-            if(username.isEmpty()){
-                inputUsername.setError("Username must be filled with text!")
-                checkLogin = false
-            }
-            if(password.isEmpty()){
-                inputPassword.setError("Password must be filled with text!")
-                checkLogin = false
-            }
-
-            if(!checkLogin) {
-                return@OnClickListener
-            }else {
+//            if(username.isEmpty()){
+//                inputUsername.setError("Username must be filled with text!")
+//                checkLogin = false
+//            }
+//            if(password.isEmpty()){
+//                inputPassword.setError("Password must be filled with text!")
+//                checkLogin = false
+//            }
+//
+//            if(!checkLogin) {
+//                return@OnClickListener
+//            }else {
                 LoginCheck()
-            }
+//            }
 
 //            if(username == "admin" && password == "admin" || (username == tempUsername && password == tempPass)) {
 //                checkLogin = true

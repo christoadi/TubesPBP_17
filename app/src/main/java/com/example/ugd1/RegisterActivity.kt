@@ -155,42 +155,42 @@ class RegisterActivity: AppCompatActivity() {
             val tanggalLahir: String = binding.etTanggalLahir.getEditText()?.getText().toString()
             val nomorTelepon: String = binding.etNomorTelepon.getEditText()?.getText().toString()
 
-            if(username.isEmpty()){
-                binding.etUsername.setError("Username masih Kosong")
-                checkLogin = false
-            }
-
-            if(password.isEmpty()){
-                binding.etPassword.setError("Password masih Kosong")
-                checkLogin = false
-            }
-
-            if(email.isEmpty()) {
-                binding.etEmail.setError("Email masih Kosong")
-                checkLogin = false
-            }
-
-            if(tanggalLahir.isEmpty()){
-                binding.etTanggalLahir.setError("Tanggal Lahir masih Kosong")
-                checkLogin = false
-            }
-
-            if(nomorTelepon.isEmpty()){
-                binding.etNomorTelepon.setError("Nomor Telepon masih Kosong")
-                checkLogin = false
-            }
-
-            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !nomorTelepon.isEmpty()){
-                checkLogin = true
-            }
-
-            if(binding.etUsername.getEditText()?.getText()==null){
-                binding.etUsername.getEditText()?.setText("")
-            }
-
-            if(binding.etPassword.getEditText()?.getText()==null){
-                binding.etPassword.getEditText()?.setText("")
-            }
+//            if(username.isEmpty()){
+//                binding.etUsername.setError("Username masih Kosong")
+//                checkLogin = false
+//            }
+//
+//            if(password.isEmpty()){
+//                binding.etPassword.setError("Password masih Kosong")
+//                checkLogin = false
+//            }
+//
+//            if(email.isEmpty()) {
+//                binding.etEmail.setError("Email masih Kosong")
+//                checkLogin = false
+//            }
+//
+//            if(tanggalLahir.isEmpty()){
+//                binding.etTanggalLahir.setError("Tanggal Lahir masih Kosong")
+//                checkLogin = false
+//            }
+//
+//            if(nomorTelepon.isEmpty()){
+//                binding.etNomorTelepon.setError("Nomor Telepon masih Kosong")
+//                checkLogin = false
+//            }
+//
+//            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !nomorTelepon.isEmpty()){
+//                checkLogin = true
+//            }
+//
+//            if(binding.etUsername.getEditText()?.getText()==null){
+//                binding.etUsername.getEditText()?.setText("")
+//            }
+//
+//            if(binding.etPassword.getEditText()?.getText()==null){
+//                binding.etPassword.getEditText()?.setText("")
+//            }
 
             if(checkLogin == true){
                 createUser(mBundle)
