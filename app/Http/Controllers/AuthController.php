@@ -51,7 +51,7 @@ class AuthController extends Controller
         ]);
 
         if($validate->fails()) 
-            return response(['message' => $validate->errors()], 400);
+            return response(['message' => $validate->errors()->first()], 400);
 
         $profile = profile::create($regisData);
         return response([
@@ -70,7 +70,7 @@ class AuthController extends Controller
         ]);
 
         if($validate->fails())
-            return response(['message' => $validate->errors()], 400);
+            return response(['message' => $validate->errors()->first()], 400);
 
         $isLogin = profile::where('username', $loginData["username"])->where('password', $loginData['password'])->exists();
 
