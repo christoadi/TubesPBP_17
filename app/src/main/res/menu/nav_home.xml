@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/navigation_pesanan"
-        android:icon="@drawable/ic_baseline_shopping_cart_24_24"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Pesanan"/>
 
     <item
