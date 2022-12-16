@@ -27,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
         val home = HomeFragment()
         val loc = LocationFragment()
         val memberGym = MemberGymFragment()
+        val pesanan = PesananFragment()
         val profile = ProfilFragment()
 
         setThatFragments(home)
@@ -41,6 +42,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.navigation_memberGym -> {
                     setThatFragments(memberGym)
+                }
+                R.id.navigation_pesanan -> {
+                    setThatFragments(pesanan)
                 }
                 R.id.navigation_profile -> {
                     setThatFragments(profile)

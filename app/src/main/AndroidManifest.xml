@@ -21,7 +21,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="LocalNotification"
+        android:label="Gym Gans"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
@@ -35,6 +35,12 @@
             android:exported="false" />
         <activity
             android:name=".EditMemberGym"
+            android:exported="true" />
+        <activity
+            android:name=".PesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditPesanan"
             android:exported="true" />
         <activity
             android:name=".EditProfileFragment"
