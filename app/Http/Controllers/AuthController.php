@@ -53,7 +53,9 @@ class AuthController extends Controller
         if($validate->fails()) 
             return response(['message' => $validate->errors()->first()], 400);
 
+        $regisData['password'] = bcrypt($request->password);
         $profile = profile::create($regisData);
+        
         return response([
             'message' => 'Add Profile Success',
             'data' => $profile

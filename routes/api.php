@@ -23,3 +23,4 @@ Route::post('login', '\App\Http\Controllers\AuthController@checkLogin');
 
 Route::resource('profil', \App\Http\Controllers\profileController::class);
 Route::resource('memberGym', \App\Http\Controllers\memberGymController::class);
+Route::resource('pesanan', \App\Http\Controllers\PesananController::class);
