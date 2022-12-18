@@ -43,6 +43,12 @@
             android:name=".EditPesanan"
             android:exported="true" />
         <activity
+            android:name=".KritikSaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditKritikSaran"
+            android:exported="true" />
+        <activity
             android:name=".EditProfileFragment"
             android:exported="false" />
         <activity

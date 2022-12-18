@@ -1,69 +1,43 @@
 package com.example.ugd1
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.ugd1.api.PesananApi
-import com.example.ugd1.model.PesananModel
+import com.example.ugd1.api.KritikSaranApi
+import com.example.ugd1.model.KritikSaranModel
 import com.google.gson.Gson
-import com.itextpdf.barcodes.BarcodeQRCode
-import com.itextpdf.io.image.ImageDataFactory
-import com.itextpdf.io.source.ByteArrayOutputStream
-import com.itextpdf.kernel.colors.ColorConstants
-import com.itextpdf.kernel.geom.PageSize
-import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfWriter
-import com.itextpdf.layout.Document
-import com.itextpdf.layout.element.Cell
-import com.itextpdf.layout.element.Image
-import com.itextpdf.layout.element.Paragraph
-import com.itextpdf.layout.element.Table
-import com.itextpdf.layout.property.HorizontalAlignment
-import com.itextpdf.layout.property.TextAlignment
 import org.json.JSONObject
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
 import java.nio.charset.StandardCharsets
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
-class EditPesanan : AppCompatActivity() {
+class EditKritikSaran : AppCompatActivity() {
     private var etId: EditText? = null
-    private var etNamaPemesan: EditText? = null
-    private var etNamaBarang: EditText? = null
-    private var edJumlah: EditText? = null
-    private var edTanggalAmbil: EditText? = null
+    private var etNama: EditText? = null
+    private var etKritik: EditText? = null
+    private var edSaran: EditText? = null
+    private var edNomorTelepon: EditText? = null
     private var layoutLoading: LinearLayout? = null
     private var queue: RequestQueue? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_pesanan)
+        setContentView(R.layout.activity_edit_kritik_saran)
 
         //Pendeklarasian request queue
         queue = Volley.newRequestQueue(this)
         etId = findViewById(R.id.et_id)
-        etNamaPemesan = findViewById(R.id.et_namaPemesan)
-        etNamaBarang = findViewById(R.id.et_namaBarang)
-        edJumlah = findViewById(R.id.et_jumlah)
-        edTanggalAmbil = findViewById(R.id.et_tanggalAmbil)
+        etNama = findViewById(R.id.et_nama)
+        etKritik = findViewById(R.id.et_kritik)
+        edSaran = findViewById(R.id.et_saran)
+        edNomorTelepon = findViewById(R.id.et_nomorTelepon)
         layoutLoading = findViewById(R.id.layout_loading)
 //
 //        setExposedDropDownMenu()
@@ -75,23 +49,23 @@ class EditPesanan : AppCompatActivity() {
         val id = intent.getIntExtra("id", -1)
         if (id == -1) {
             btnSave.setOnClickListener {
-                val namaPemesan = etNamaPemesan!!.text.toString()
-                val namaBarang = etNamaBarang!!.text.toString()
-                val jumlah = edJumlah!!.text.toString()
-                val tanggalAmbil = edTanggalAmbil!!.text.toString()
+                val nama = etNama!!.text.toString()
+                val kritik = etKritik!!.text.toString()
+                val saran = edSaran!!.text.toString()
+                val nomorTelepon = edNomorTelepon!!.text.toString()
 
-                tvTitle.setText("Tambah Pesanan")
+                tvTitle.setText("Tambah Kritik Saran")
 
-                createPesanan()
+                createKritikSaran()
 //                createPdf(namaPemesan, namaBarang, jumlah, tanggalAmbil)
             }
 
 
         } else {
-            tvTitle.setText("Edit Pesanan")
-            getPesananById(id)
+            tvTitle.setText("Edit Kritik Saran")
+            getKritikSaranById(id)
 
-            btnSave.setOnClickListener { updatePesanan(id) }
+            btnSave.setOnClickListener { updateKritikSaran(id) }
         }
 
     }
@@ -106,13 +80,13 @@ class EditPesanan : AppCompatActivity() {
 //        edProdi!!.setAdapter(adapterProdi)
 //    }
 
-    private fun getPesananById(id: Int) {
+    private fun getKritikSaranById(id: Int) {
         // Fungsi untuk menampilkan data pesanan berdasarkan id
         setLoading(true)
         val stringRequest: StringRequest =
             object : StringRequest(
                 Method.GET,
-                PesananApi.GET_BY_ID_URL + id,
+                KritikSaranApi.GET_BY_ID_URL + id,
                 Response.Listener { response ->
 //                val gson = Gson()
 //                val member = gson.fromJson(response, MemberGym::class.java)
@@ -120,12 +94,12 @@ class EditPesanan : AppCompatActivity() {
                     var memberJo = JSONObject(response.toString())
                     val member = memberJo.getJSONObject("data")
 
-                    etNamaPemesan!!.setText(member.getString("namaPemesan"))
-                    etNamaBarang!!.setText(member.getString("namaBarang"))
-                    edJumlah!!.setText(member.getString("jumlah"))
-                    edTanggalAmbil!!.setText(member.getString("tanggalAmbil"))
+                    etNama!!.setText(member.getString("nama"))
+                    etKritik!!.setText(member.getString("kritik"))
+                    edSaran!!.setText(member.getString("saran"))
+                    edNomorTelepon!!.setText(member.getString("nomorTelepon"))
 
-                    Toast.makeText(this@EditPesanan, "Data berhasil diambil", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@EditKritikSaran, "Data berhasil diambil", Toast.LENGTH_SHORT)
                         .show()
                     setLoading(false)
                 },
@@ -136,12 +110,12 @@ class EditPesanan : AppCompatActivity() {
                             String(error.networkResponse.data, StandardCharsets.UTF_8)
                         val errors = JSONObject(responseBody)
                         Toast.makeText(
-                            this@EditPesanan,
+                            this@EditKritikSaran,
                             errors.getString("message"),
                             Toast.LENGTH_SHORT
                         ).show()
                     } catch (e: Exception) {
-                        Toast.makeText(this@EditPesanan, e.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EditKritikSaran, e.message, Toast.LENGTH_SHORT).show()
                     }
                 }) {
                 @Throws(AuthFailureError::class)
@@ -154,42 +128,42 @@ class EditPesanan : AppCompatActivity() {
         queue!!.add(stringRequest)
     }
 
-    private fun createPesanan() {
+    private fun createKritikSaran() {
         setLoading(true)
 
-        if (etNamaPemesan!!.text.toString().isEmpty()) {
+        if (etNama!!.text.toString().isEmpty()) {
             Toast.makeText(
-                this@EditPesanan,
-                "Nama Pemesan tidak boleh kosong!",
+                this@EditKritikSaran,
+                "Nama tidak boleh kosong!",
                 Toast.LENGTH_SHORT
             ).show()
-        } else if (etNamaBarang!!.text.toString().isEmpty()) {
-            Toast.makeText(this@EditPesanan, "Nama barang tidak boleh kosong!", Toast.LENGTH_SHORT)
+        } else if (etKritik!!.text.toString().isEmpty()) {
+            Toast.makeText(this@EditKritikSaran, "Kritik tidak boleh kosong!", Toast.LENGTH_SHORT)
                 .show()
-        } else if (edJumlah!!.text.toString().isEmpty()) {
-            Toast.makeText(this@EditPesanan, "Jumlah tidak boleh kosong!", Toast.LENGTH_SHORT)
+        } else if (edSaran!!.text.toString().isEmpty()) {
+            Toast.makeText(this@EditKritikSaran, "Saran tidak boleh kosong!", Toast.LENGTH_SHORT)
                 .show()
-        } else if (edTanggalAmbil!!.text.toString().isEmpty()) {
-            Toast.makeText(this@EditPesanan, "Tanggal Ambil tidak boleh kosong!", Toast.LENGTH_SHORT)
+        } else if (edNomorTelepon!!.text.toString().isEmpty()) {
+            Toast.makeText(this@EditKritikSaran, "Nomor Telepon tidak boleh kosong!", Toast.LENGTH_SHORT)
                 .show()
         } else {
 
-            val pesanan = PesananModel(
+            val kritikSaran = KritikSaranModel(
                 0,
-                etNamaPemesan!!.text.toString(),
-                etNamaBarang!!.text.toString(),
-                edJumlah!!.text.toString(),
-                edTanggalAmbil!!.text.toString()
+                etNama!!.text.toString(),
+                etKritik!!.text.toString(),
+                edSaran!!.text.toString(),
+                edNomorTelepon!!.text.toString()
             )
             val stringRequest: StringRequest =
                 object :
-                    StringRequest(Method.POST, PesananApi.ADD_URL, Response.Listener { response ->
+                    StringRequest(Method.POST, KritikSaranApi.ADD_URL, Response.Listener { response ->
                         val gson = Gson()
-                        val pesanan = gson.fromJson(response, PesananModel::class.java)
+                        val kritikSaran = gson.fromJson(response, KritikSaranModel::class.java)
 
-                        if (pesanan != null)
+                        if (kritikSaran != null)
                             Toast.makeText(
-                                this@EditPesanan,
+                                this@EditKritikSaran,
                                 "Data Berhasil Ditambahkan",
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -206,12 +180,12 @@ class EditPesanan : AppCompatActivity() {
                                 String(error.networkResponse.data, StandardCharsets.UTF_8)
                             val errors = JSONObject(responseBody)
                             Toast.makeText(
-                                this@EditPesanan,
+                                this@EditKritikSaran,
                                 errors.getString("message"),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } catch (e: Exception) {
-                            Toast.makeText(this@EditPesanan, e.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@EditKritikSaran, e.message, Toast.LENGTH_SHORT).show()
                         }
                     }) {
                     @Throws(AuthFailureError::class)
@@ -225,7 +199,7 @@ class EditPesanan : AppCompatActivity() {
                     @Throws(AuthFailureError::class)
                     override fun getBody(): ByteArray {
                         val gson = Gson()
-                        val requestBody = gson.toJson(pesanan)
+                        val requestBody = gson.toJson(kritikSaran)
                         return requestBody.toByteArray(StandardCharsets.UTF_8)
                     }
 
@@ -239,29 +213,29 @@ class EditPesanan : AppCompatActivity() {
         setLoading(false)
     }
 
-    private fun updatePesanan(id: Int) {
+    private fun updateKritikSaran(id: Int) {
         setLoading(true)
 
-        val pesanan = PesananModel(
+        val kritikSaran = KritikSaranModel(
             id,
-            etNamaPemesan!!.text.toString(),
-            etNamaBarang!!.text.toString(),
-            edJumlah!!.text.toString(),
-            edTanggalAmbil!!.text.toString()
+            etNama!!.text.toString(),
+            etKritik!!.text.toString(),
+            edSaran!!.text.toString(),
+            edNomorTelepon!!.text.toString()
         )
 
         val stringRequest: StringRequest = object :
             StringRequest(
                 Method.PUT,
-                PesananApi.UPDATE_URL + id,
+                KritikSaranApi.UPDATE_URL + id,
                 Response.Listener { response ->
                     val gson = Gson()
 
-                    val pesanan = gson.fromJson(response, PesananModel::class.java)
+                    val kritikSaran = gson.fromJson(response, KritikSaranModel::class.java)
 
-                    if (pesanan != null)
+                    if (kritikSaran != null)
                         Toast.makeText(
-                            this@EditPesanan,
+                            this@EditKritikSaran,
                             "Data Berhasil Diupdate",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -278,12 +252,12 @@ class EditPesanan : AppCompatActivity() {
                             String(error.networkResponse.data, StandardCharsets.UTF_8)
                         val errors = JSONObject(responseBody)
                         Toast.makeText(
-                            this@EditPesanan,
+                            this@EditKritikSaran,
                             errors.getString("message"),
                             Toast.LENGTH_SHORT
                         ).show()
                     } catch (e: Exception) {
-                        Toast.makeText(this@EditPesanan, e.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EditKritikSaran, e.message, Toast.LENGTH_SHORT).show()
                     }
                 }) {
             @Throws(AuthFailureError::class)
@@ -297,7 +271,7 @@ class EditPesanan : AppCompatActivity() {
             @Throws(AuthFailureError::class)
             override fun getBody(): ByteArray {
                 val gson = Gson()
-                val requestBody = gson.toJson(pesanan)
+                val requestBody = gson.toJson(kritikSaran)
                 return requestBody.toByteArray(StandardCharsets.UTF_8)
             }
 

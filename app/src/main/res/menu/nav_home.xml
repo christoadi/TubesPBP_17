@@ -22,6 +22,11 @@
         android:title="Pesanan"/>
 
     <item
+        android:id="@+id/navigation_kritikSaran"
+        android:icon="@drawable/ic_baseline_description_24"
+        android:title="Kritik Saran"/>
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile"/>
