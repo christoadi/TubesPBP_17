@@ -53,7 +53,7 @@ class AuthController extends Controller
         if($validate->fails()) 
             return response(['message' => $validate->errors()->first()], 400);
 
-        $regisData['password'] = bcrypt($request->password);
+        // $regisData['password'] = bcrypt($request->password);
         $profile = profile::create($regisData);
         
         return response([
@@ -82,6 +82,12 @@ class AuthController extends Controller
                 'data' => profile::where('username', $loginData["username"])->where("password", $loginData["password"])->first()
             ], 200);
         }
+
+        
+        // if(!Auth::attempt($loginData))
+        //     return response(['message' => 'Invalid Credentials'],401);
+
+        // $user = Auth::user();
 
         return response([
             'message' => 'Unauthenticated',
