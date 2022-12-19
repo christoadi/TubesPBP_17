@@ -364,7 +364,7 @@ class EditMemberGym : AppCompatActivity() {
             val group = Paragraph(
                 """
                                     Berikut adalah
-                                    Nama Pengguna UAJY 2022/2023
+                                    Member Gymnesia
                                 """.trimIndent()
             ).setTextAlignment(TextAlignment.CENTER).setFontSize(12f)
 
