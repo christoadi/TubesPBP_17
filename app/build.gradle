@@ -67,6 +67,8 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.11'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //Library untuk mengakses web api
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.code.gson:gson:2.8.8'
 

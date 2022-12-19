@@ -142,7 +142,6 @@ class KritikSaranActivity: AppCompatActivity(){
                 val headers = java.util.HashMap<String, String>()
                 headers["Accept"] = "application/json"
                 return headers
-
             }
 
         }
