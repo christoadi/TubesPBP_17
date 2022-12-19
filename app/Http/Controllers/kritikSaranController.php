@@ -132,7 +132,7 @@ class kritikSaranController extends Controller
         if($validate->fails()) 
             return response(['message' => $validate->errors()], 400);
 
-        $kritikSarans->nana = $updateData['nana'];
+        $kritikSarans->nama = $updateData['nama'];
         $kritikSarans->kritik = $updateData['kritik'];
         $kritikSarans->saran = $updateData['saran'];
         $kritikSarans->nomorTelepon = $updateData['nomorTelepon'];
